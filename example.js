@@ -5,7 +5,7 @@ const iPhone = puppeteer.devices['iPhone 6'];
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.emulate(iPhone);
-  await page.goto('https://app.tutoraround.com/tutors-near-me');
+  await page.goto('https:tutoraround.com');
   await page.setDefaultTimeout(0)
   await page.screenshot({ path: 'screenshot.png' });
   await browser.close();
