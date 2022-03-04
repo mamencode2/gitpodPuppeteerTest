@@ -13,7 +13,11 @@ await page.goto("https://app.tutoraround.com/tutors-near-me", {
 })
 
 //await page.click("body > app-root > ion-app > ion-router-outlet > app-inital-tour > ion-content > div > a")
-await page.screenshot({path: "tscreenfull.png", fullPage: true})
+//await page.screenshot({path: "tscreenfull.png", fullPage: true})
+const photos = await page.$$eval(".profile-image ", imgs => {
+    return imgs.map(x => x.src)
+  })
 
+  console.log(photos[0].split("?")[0])
 await browser.close()
 })()
