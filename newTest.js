@@ -60,14 +60,7 @@ let contents = [];
         }
         if (title !== "Null") {
             contents.push({title, price, subjects, distance,  proffesion, img})
-            // fs.writeFile("resulte.json", ` ${title},   ${price}, ${[subjects]},  ${distance},  ${proffesion},  ${img}`,function (err) {
-            //     if (err) throw err;
-            // })
-            // fs.appendFile("resulte.csv", ` ${title},   ${price}, ${[subjects]},  ${distance},  ${proffesion},  ${img}\n`, function (err) {
-            //     if (err) throw err;
-            // })
-
-            //console.log(...contents)
+       
             fs.writeFile("./dataSets.json", JSON.stringify(contents), err=> err? console.log(err): null)
         }
     }
