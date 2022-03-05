@@ -44,7 +44,7 @@ const puppeteer = require('puppeteer');
 
         }
         try {
-            img = await page.evaluate((el) => el.querySelector(" ion-row > ion-col.ion-text-center.md.hydrated > a > img").getAttribute("src"), producthandle)
+            img = await page.evaluate((el) => el.querySelector(" ion-row > ion-col.ion-text-center.md.hydrated > a > img").getAttribute("src").split("?")[0], producthandle)
         } catch (error) {
             console.log(error)
         }
@@ -55,7 +55,7 @@ const puppeteer = require('puppeteer');
             console.log(error)
         }
 
-        console.log(subjects)
+        console.log(img)
     }
     await browser.close();
 })()
