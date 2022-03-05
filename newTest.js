@@ -1,6 +1,6 @@
 const fs = require('fs');
 const puppeteer = require('puppeteer');
-
+let contents = [];
 (async () => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
@@ -14,7 +14,7 @@ const puppeteer = require('puppeteer');
     const productsHandles = await page.$$(" div.tutor-cards > div")
 
     for (const producthandle of productsHandles) {
-        let title = "Null";
+        let title ="Null";
         let price = "Null";
         let img = "Null";
         let proffesion = "Null";
@@ -22,6 +22,7 @@ const puppeteer = require('puppeteer');
         let distance = "Null"
         try {
             title = await page.evaluate((el) => el.querySelector("div.name-details > div").textContent, producthandle)
+            
         } catch (error) {
             console.log(error)
         }
@@ -58,10 +59,16 @@ const puppeteer = require('puppeteer');
             title, price, img, proffesion, subjects, distance
         }
         if (title !== "Null") {
-            fs.appendFile("resulte.csv", `name: ${title},  price: ${price}, subjects:${[subjects]}, distance: ${distance}, profession: ${proffesion}, imgSrc: ${img}\n`, function (err) {
-                if (err) throw err;
-            })
+            contents.push({title, price, subjects, distance,  proffesion, img})
+            // fs.writeFile("resulte.json", ` ${title},   ${price}, ${[subjects]},  ${distance},  ${proffesion},  ${img}`,function (err) {
+            //     if (err) throw err;
+            // })
+            // fs.appendFile("resulte.csv", ` ${title},   ${price}, ${[subjects]},  ${distance},  ${proffesion},  ${img}\n`, function (err) {
+            //     if (err) throw err;
+            // })
 
+            //console.log(...contents)
+            fs.writeFile("./dataSets.json", JSON.stringify(contents), err=> err? console.log(err): null)
         }
     }
     await browser.close();
