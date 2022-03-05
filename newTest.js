@@ -26,14 +26,14 @@ const puppeteer = require('puppeteer');
             console.log(error)
         }
         try {
-            distance = await page.evaluate((el)=> el.querySelector("div.distance").textContent, producthandle)
+            distance = await page.evaluate((el) => el.querySelector("div.distance").textContent, producthandle)
         } catch (error) {
-            
+
         }
         try {
-            price = await page.evaluate((el)=> el.querySelector("div.amount > span:nth-child(2)").textContent, producthandle)
+            price = await page.evaluate((el) => el.querySelector("div.amount > span:nth-child(2)").textContent, producthandle)
         } catch (error) {
-            
+
         }
         try {
             subjects = await page.evaluate((el) => {
@@ -54,9 +54,14 @@ const puppeteer = require('puppeteer');
         } catch (error) {
             console.log(error)
         }
+        const dataContent = {
+            title, price, img, proffesion, subjects, distance
+        }
+        if (title !== "Null") {
+            fs.appendFile("resulte.csv", `name: ${title},  price: ${price}, subjects:${[subjects]}, distance: ${distance}, profession: ${proffesion}, imgSrc: ${img}\n`, function (err) {
+                if (err) throw err;
+            })
 
-        if(title !== "Null"){
-            fs.writeFile("results.json", )
         }
     }
     await browser.close();
