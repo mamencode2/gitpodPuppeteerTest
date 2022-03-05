@@ -55,7 +55,9 @@ const puppeteer = require('puppeteer');
             console.log(error)
         }
 
-        console.log(img)
+        if(title !== "Null"){
+            fs.writeFile("results.json", )
+        }
     }
     await browser.close();
 })()
