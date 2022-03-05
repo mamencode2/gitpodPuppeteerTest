@@ -19,10 +19,21 @@ const puppeteer = require('puppeteer');
         let img = "Null";
         let proffesion = "Null";
         let subjects = "Null"
+        let distance = "Null"
         try {
             title = await page.evaluate((el) => el.querySelector("div.name-details > div").textContent, producthandle)
         } catch (error) {
             console.log(error)
+        }
+        try {
+            distance = await page.evaluate((el)=> el.querySelector("div.distance").textContent, producthandle)
+        } catch (error) {
+            
+        }
+        try {
+            price = await page.evaluate((el)=> el.querySelector("div.amount > span:nth-child(2)").textContent, producthandle)
+        } catch (error) {
+            
         }
         try {
             subjects = await page.evaluate((el) => {
