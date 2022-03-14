@@ -1,6 +1,6 @@
 const fs = require('fs');
 const puppeteer = require('puppeteer');
-
+let contents = [];
 (async()=>{
 
     const browser = await puppeteer.launch()
@@ -44,7 +44,9 @@ const puppeteer = require('puppeteer');
               } catch (error) {}
 
               if(title !== "Null"){
-                  console.log(title)
+                 fs.appendFile("results.csv", `${title.replace(/,/g/ ".")}, ${price}, ${img}\n`, function (err){
+                     if(err) throw err;
+                 })
               }
         }
         await page.waitForSelector("li.a-last", { visible: true });

@@ -59,9 +59,7 @@ let contents = [];
             title, price, img, proffesion, subjects, distance
         }
         if (title !== "Null") {
-            contents.push({title, price, subjects, distance,  proffesion, img})
-       
-            fs.writeFile("./dataSets.json", JSON.stringify(contents), err=> err? console.log(err): null)
+            console.log(img)
         }
     }
     await browser.close();
