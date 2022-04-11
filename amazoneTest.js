@@ -28,14 +28,24 @@ const sleep = (milliseconds) => {
       let title = "Null";
       let price = "Null";
       let img = "Null";
-
+let dtl= 'Null'
       try {
         title = await page.evaluate(
           (el) => el.querySelector("h2 > a > span").textContent,
           producthandle
         );
       } catch (error) {}
+try {
+  let selector = await page.evaluate(
+    (el) => el.querySelector("h2 > a > span"),
+    producthandle
+  );
+await page.click(selector)
+await page.waitForNavigation()
 
+} catch (error) {
+  
+}
       try {
         price = await page.evaluate(
           (el) => el.querySelector(".a-price > .a-offscreen").textContent,
